@@ -22,18 +22,17 @@
     </header>
 
     <h3>How does it work?</h3>
-    <img alt="How does it work?" src="/images/gowebrtc.png" />
+    <img alt="How does it work?" src="/img/gowebrtc.png" />
     <p>
         A publisher exchanges an <a target="_blank"
             href="https://en.wikipedia.org/wiki/Session_Description_Protocol">SDP</a> offer for
-        an SDP answer via your server with <code>POST https://api.gowebrtc.com/publisher</code>. After the exchange,
+        an SDP answer with <code>POST https://api.gowebrtc.com/publisher</code>. After the exchange,
         video/audo/data is flowing from the publisher to <code>api.gowebrtc.com</code> and nothing in the other
-        direction. The publisher also gets an ID that can be shared with your server for subscribers to discover the
-        publisher.
+        direction. The publisher gets an ID that can be shared with subscribers to connect to the publisher.
     </p>
 
     <p>
-        Similarly, a subscriber exchanges an SDP offer for an SDP answer via your server with
+        Similarly, a subscriber exchanges an SDP offer for an SDP answer with
         <code>POST https://api.gowebrtc.com/subscriber</code>. After the exchange, video/audo/data is flowing from
         <code>api.gowebrtc.com</code> to the subscriber and nothing in the other direction.
     </p>

@@ -1,8 +1,9 @@
 video {
-    width: 100%;
     background-color: black;
 }
 
-input {
+input,
+video,
+img {
     width: 100%;
 }
