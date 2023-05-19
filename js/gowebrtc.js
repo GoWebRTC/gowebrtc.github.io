@@ -1,4 +1,5 @@
-const GOWEBRTC_ENDPOINT = "https://api.gowebrtc.com";
+// const GOWEBRTC_ENDPOINT = "https://api.gowebrtc.com";
+const GOWEBRTC_ENDPOINT = "http://localhost";
 
 class GoWebRTCClient {
     constructor(kind) {
@@ -16,7 +17,7 @@ class GoWebRTCClient {
             this.pc.onsignalingstatechange = (event) => { console.log(`${this.kind} peerconnection onsignalingstatechange:`, this.pc.signalingState); }
             this.pc.onicegatheringstatechange = (event) => { console.log(`${this.kind} peerconnection onicegatheringstatechange:`, this.pc.iceGatheringState); }
             this.pc.oniceconnectionstatechange = (event) => { console.log(`${this.kind} peerconnection oniceconnectionstatechange:`, this.pc.iceConnectionState); }
-            this.pc.onicecandidate = (ice) => { if (ice.candidate === null) this.sendOffer() };
+            this.pc.onicecandidate = (ice) => { if (ice.candidate === null) this.sendOffer().catch((error) => { reject(error) }) };
 
             this.newDatachannel("main", { id: 0, negotiated: true })
                 .then((dc) => {
@@ -24,7 +25,7 @@ class GoWebRTCClient {
                     this.dc.onmessage = (event) => { this.receiveCommand(event.data); }
                     resolve();
                 })
-                .catch(() => { reject() });
+                .catch((error) => { reject(error) });
         })
     }
 
@@ -61,9 +62,5 @@ class GoWebRTCClient {
     async receiveCommand(command) {
         command = JSON.parse(command);
         if (command.id) this.dcResolve[command.id](command);
-    }
-
-    async isReady() {
-        return this.pc && this.pc.connectionState === "connected" && this.dc && dc.readyState === "open";
     }
 }

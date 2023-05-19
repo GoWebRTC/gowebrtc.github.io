@@ -13,8 +13,8 @@ class Subscriber extends GoWebRTCClient {
     async subscribe(video, audio, data) {
         const promise = this.newPeerConnection();
 
-        if (video) { this.pc.addTransceiver("video"); }
-        if (audio) { this.pc.addTransceiver("audio"); }
+        if (video) { this.pc.addTransceiver("video", { direction: "recvonly" }); }
+        if (audio) { this.pc.addTransceiver("audio", { direction: "recvonly" }); }
         if (data) {
             this.newDatachannel("tcp", { id: 1, negotiated: true }).then((dc) => {
                 this.tcpDataChannel = dc;

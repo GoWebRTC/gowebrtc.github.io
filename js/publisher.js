@@ -15,8 +15,8 @@ class Publisher extends GoWebRTCClient {
 
         if (video || audio) {
             this.stream = await navigator.mediaDevices.getUserMedia({ video: video, audio: audio });
-            if (video) this.pc.addTrack(this.stream.getVideoTracks()[0]);
-            if (audio) this.pc.addTrack(this.stream.getAudioTracks()[0]);
+            if (video) this.pc.addTransceiver(this.stream.getVideoTracks()[0], { direction: "sendonly" });
+            if (audio) this.pc.addTransceiver(this.stream.getAudioTracks()[0], { direction: "sendonly" });
         }
 
         if (data) {
