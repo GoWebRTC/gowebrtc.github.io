@@ -1,5 +1,5 @@
-// const GOWEBRTC_ENDPOINT = "https://api.gowebrtc.com";
-const GOWEBRTC_ENDPOINT = "http://localhost";
+const GOWEBRTC_ENDPOINT = "https://api.gowebrtc.com";
+// const GOWEBRTC_ENDPOINT = "http://localhost";
 
 class GoWebRTCClient {
     constructor(kind) {
